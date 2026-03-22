@@ -1,66 +1,70 @@
-# **Tuğla Kırma Oyunu**
+# Brick Breaker Game
 
-Bu proje, **Arduino ve OLED ekran** kullanarak geliştirilmiş bir **tuğla kırma oyunudur**. Oyunda **potansiyometre ile kontrol edilen bir tahta**, **hareket eden bir top** ve **kırılabilecek tuğla dizilimleri** bulunmaktadır. **LDR sensörü ile ortam ışığına göre ekran ters dönme efekti eklenmiştir.** Ayrıca oyun **kademeli olarak zorlaşmaktadır** ve **can sistemi** bulunmaktadır.
-
----
-
-## **Özellikler**  
-
-- **Potansiyometre ile tahta kontrolü**  
-- **Otomatik hareket eden top mekaniği**  
-- **Farklı seviyelerde tuğla dizilimleri**  
-- **LDR sensörü ile ortam ışığı algılama ve ekran ters dönme efekti**  
-- **Seviyeler ilerledikçe topun hızını arttırma**  
-- **Kalp mekanizması ile can kazanma**  
-- **Seven Segment Display ile skor görüntüleme**  
+This project is a **brick breaker game** developed using **Arduino and an OLED display**. The game features a **paddle controlled by a potentiometer**, a **moving ball**, and **breakable brick layouts**. An **LDR sensor adds a screen inversion effect based on ambient light**. In addition, the game becomes progressively more difficult and includes a **life system**.
 
 ---
 
-## **Donanım Gereksinimleri**
+## Features
 
-Bu projeyi gerçekleştirmek için aşağıdaki bileşenlere ihtiyacınız vardır:
+- **Paddle control using a potentiometer**
+- **Automatically moving ball mechanic**
+- **Different brick layouts across levels**
+- **Ambient light detection with an LDR sensor and screen inversion effect**
+- **Increasing ball speed as levels progress**
+- **Life gain mechanic with heart objects**
+- **Score display using a Seven Segment Display**
 
-- **Arduino (Uno, Mega, vs.)**
-- **128x64 OLED ekran (SSD1306)**
-- **Potansiyometre**
-- **LDR (Işık Sensörü)**
-- **3 Adet LED** (Can durumu görseli için)
-- **3 Buton (Yukari, Aşağı, Seçim)**
+---
+
+## Hardware Requirements
+
+You will need the following components to build this project:
+
+- **Arduino (Uno, Mega, etc.)**
+- **128x64 OLED display (SSD1306)**
+- **Potentiometer**
+- **LDR (Light Sensor)**
+- **3 LEDs** (for life status visualization)
+- **3 Buttons (Up, Down, Select)**
 - **7 Segment Display**
-- **Bağlantı kabloları**
+- **Jumper wires**
 
 ---
 
-## **Kurulum ve Kullanım**
+## Installation and Usage
 
-### **1. Projeyi Klonlayın**  
+### 1. Clone the Repository
 
-Aşağıdaki komutu terminal veya komut istemcisine girerek projeyi klonlayın:  
+Run the following command in your terminal or command prompt:
 
 ```sh
 git clone https://github.com/Esentrn/Brick-Breaker-Game.git
 cd Brick-Breaker-Game
 ```
 
-### **2. Bağlantılar**
+### 2. Connections
 
-Aşağıda **Arduino ile bileşenler arasındaki bağlantılar** verilmiştir:
+Below are the **connections between the Arduino and the components**:
 
-- **OLED Ekran**
+- **OLED Display**
   - VCC → 5V
   - GND → GND
-  - SDA → A4 (Arduino Uno için)
-  - SCL → A5 (Arduino Uno için)
-- **LDR Sensörü** → A2
-- **Potansiyometre** → A0
-- **LED Bağlantıları**
+  - SDA → A4 (for Arduino Uno)
+  - SCL → A5 (for Arduino Uno)
+
+- **LDR Sensor** → A2
+- **Potentiometer** → A0
+
+- **LED Connections**
   - LED1 → 8
   - LED2 → 9
   - LED3 → 13
-- **Butonlar**
-  - Yukarı → 12
-  - Aşağı → 11
-  - Seçim → 10
+
+- **Buttons**
+  - Up → 12
+  - Down → 11
+  - Select → 10
+
 - **7 Segment Display**
   - Segment A → 1
   - Segment B → 2
@@ -70,61 +74,66 @@ Aşağıda **Arduino ile bileşenler arasındaki bağlantılar** verilmiştir:
   - Segment F → 6
   - Segment G → 7
 
-### **3. Kodun Yüklenmesi**
+### 3. Uploading the Code
 
-Arduino IDE veya PlatformIO kullanarak aşağıdaki adımları takip ederek projeyi yükleyebilirsiniz:
+You can upload the project using **Arduino IDE** or **PlatformIO** by following these steps:
 
-1. **Gerekli kütüphaneleri yükleyin:**  
-   - `Adafruit_GFX`  
+1. **Install the required libraries:**
+   - `Adafruit_GFX`
    - `Adafruit_SSD1306`
-2. **Kodu Arduino'ya yükleyin.**
-3. **Bağlantıları kontrol edin ve Arduino'yu bağlayın.**
-4. **Arduino IDE'de uygun port ve kartı seçin.**
-5. **Kodu derleyip yükleyin.**
+2. **Upload the code to the Arduino.**
+3. **Check the connections and connect the Arduino.**
+4. **Select the correct board and port in the Arduino IDE.**
+5. **Compile and upload the code.**
 
 ---
 
-## **Oyun Mekaniği**
+## Game Mechanics
 
-- **Oyuna Başlama:**
-  - "**1. Başlat**" ve "**2. Çıkış**" seçenekleri mevcuttur.
-  - "Başlat" seçildiğinde top harekete geçer.
-  
-- **Tahta Kontrolü:**
-  - Potansiyometre ile sola-sağa hareket ettirilir.
-  
-- **Topun Hareketi:**
-  - Top ekranın sınırlarına çarptığında geri sekerek hareket eder.
-  - Tuğla dizilimlerine çarptığında tuğla kırılır ve skor artar.
-  
-- **Seviyeler ve Skor:**
-  - Toplamda 5 farklı tuğla dizilimi vardır.
-  - Her seviyede tuğla düzeni değişir.
-  - Tüm tuğlalar kırılırsa **bir sonraki seviyeye geçilir** ve top hızlanır.
-  
-- **Can Sistemi ve Kalpler:**
-  - Oyuncunun **başlangıçta 3 canı vardır.**
-  - **LED'ler can durumunu gösterir.**
-  - **Kalp nesneleri rastgele düşer**, yakalanırsa **ekstra can kazanılır**.
-  - **Canlar biterse oyun sona erer.**
-  
-- **Oyun Bitişi:**
-  - Tüm canlar tükenirse oyun sona erer ve **skor ekranda gösterilir.**
-  - "**Oyun Bitti!**" mesajı gösterilir ve menüye dönülür.
+### Starting the Game
 
----
+- The menu includes the options **"1. Start"** and **"2. Exit"**.
+- When **Start** is selected, the ball begins to move.
 
-## **Görsel**
+### Paddle Control
 
-![Oyun Ekranı](https://github.com/Esentrn/Brick-Breaker-Game/blob/01c15635e28c1c352f8bf83abcd27e9a3439a8f3/Brick-Breaker-Game.png)
+- The paddle is moved left and right using the potentiometer.
 
----
+### Ball Movement
 
-## **Oyun Videosu**
+- The ball bounces back when it hits the screen boundaries.
+- When it hits brick layouts, the bricks break and the score increases.
 
-![Oyun Ekranı](https://github.com/Esentrn/Brick-Breaker-Game/blob/01c15635e28c1c352f8bf83abcd27e9a3439a8f3/Brick-Breaker-Game.gif)
+### Levels and Score
+
+- There are **5 different brick layouts** in total.
+- The brick arrangement changes at each level.
+- If all bricks are broken, the game **moves to the next level** and the ball speed increases.
+
+### Life System and Hearts
+
+- The player starts with **3 lives**.
+- **LEDs display the current life status**.
+- **Heart objects randomly fall**, and if caught, the player gains **an extra life**.
+- If all lives are lost, the game ends.
+
+### Game Over
+
+- If all lives are depleted, the game ends and the **score is displayed on the screen**.
+- The message **"Game Over!"** is shown, and the game returns to the menu.
 
 ---
 
-**Keyifli oyunlar! 🎉**
+## Visual
 
+![Game Screen](https://github.com/Esentrn/Brick-Breaker-Game/blob/01c15635e28c1c352f8bf83abcd27e9a3439a8f3/Brick-Breaker-Game.png)
+
+---
+
+## Game Video
+
+![Game Preview](https://github.com/Esentrn/Brick-Breaker-Game/blob/01c15635e28c1c352f8bf83abcd27e9a3439a8f3/Brick-Breaker-Game.gif)
+
+---
+
+Enjoy the game! 🎉
